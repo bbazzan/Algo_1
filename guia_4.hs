@@ -40,12 +40,15 @@ sumaDigitos n
 
 -- Ej 7
 todosDigitosIguales :: Integer -> Bool
-todosDigitosIguales n = 
+todosDigitosIguales n 
+    | n < 10 = True
+    | otherwise = (n `mod ` 10) == (n `div` 10) `mod` 10 && todosDigitosIguales (n `div` 10)
 
--- allEqualDigits :: Int -> Bool
--- allEqualDigits n = go (n `div` 10) (n `mod` 10)
---   where
---     go 0 _ = True
---     go n lastDigit
---       | n `mod` 10 == lastDigit = go (n `div` 10) lastDigit
---       | otherwise = False
+-- Ej 8
+iesimoDigito :: Integer -> Integer -> Integer
+iesimoDigito n i = (n `div` 10 ^ (cantDigitos n - i)) `mod` 10
+
+cantDigitos :: Integer -> Integer
+cantDigitos n 
+    | n == 0 = 1
+    | otherwise  
