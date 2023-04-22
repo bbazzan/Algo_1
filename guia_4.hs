@@ -101,3 +101,12 @@ raizDe2Aprox n = (sucesion n) - 1
 sucesion :: Integer -> Float
 sucesion 1 = 2
 sucesion n = 2 + (1 / sucesion (n - 1))
+
+-- Ej 13
+dobleSumatoria :: Integer -> Integer -> Integer
+dobleSumatoria 1 m = sumatoriaSobreM 1 m
+dobleSumatoria n m = sumatoriaSobreM n m + dobleSumatoria (n - 1) m
+
+sumatoriaSobreM :: Integer -> Integer -> Integer
+sumatoriaSobreM n 1 = n
+sumatoriaSobreM n m = (n ^ m) + sumatoriaSobreM n (m - 1)
