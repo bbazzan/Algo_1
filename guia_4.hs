@@ -93,3 +93,11 @@ factorial n = n * factorial (n - 1)
 -- b
 e :: Float
 e = eAprox 10
+
+-- Ej 12
+raizDe2Aprox :: Integer -> Float
+raizDe2Aprox n = (sucesion n) - 1
+
+sucesion :: Integer -> Float
+sucesion 1 = 2
+sucesion n = 2 + (1 / sucesion (n - 1))
