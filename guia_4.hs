@@ -162,3 +162,13 @@ nEsimoPrimoAux n i
     | esPrimo i && n == 1 = i
     | esPrimo i = nEsimoPrimoAux (n - 1) (i + 1)
     | otherwise = nEsimoPrimoAux n (i + 1)
+
+-- Ej 17
+esFibonacci :: Integer -> Bool
+esFibonacci n = esFibonacciAux n 0
+
+esFibonacciAux :: Integer -> Integer -> Bool
+esFibonacciAux n i 
+    | fibonacci i == n = True
+    | fibonacci i > n = False
+    | otherwise = esFibonacciAux n (i + 1)
