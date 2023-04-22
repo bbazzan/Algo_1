@@ -58,3 +58,24 @@ esCapicua n
     | cantDigitos n == 1 = True
     | cantDigitos n == 2 || cantDigitos n == 3 = iesimoDigito n 1 == (n `mod` 10)
     | otherwise = iesimoDigito n 1 == (n `mod` 10) && esCapicua (div (mod n (10 ^ ((cantDigitos n) - 1))) 10)
+
+-- Ej 10
+-- a
+f1 :: Integer -> Integer
+f1 0 = 1
+f1 n = 2 ^ n + f1 (n - 1)
+
+-- b
+f2 :: Float -> Integer -> Float
+f2 q 1 = q
+f2 q n = q ^ n + f2 q (n - 1)
+
+-- c
+f3 :: Float -> Integer -> Float
+f3 q 1 = q ^ 2 + q
+f3 q n = q ^ (2 * n) + q ^ ((2 * n) - 1) + f3 q (n - 1)
+
+-- d
+f4 :: Float -> Integer -> Float
+f4 q 0 = 1
+f4 q n = f3 q n - f2 q (n - 1)  -- suma de n a 2n = suma de 0 a 2n - suma de 0 n-1
