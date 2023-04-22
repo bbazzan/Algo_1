@@ -128,3 +128,37 @@ sumaRacionales n m = sumaRacionalesAux n m + sumaRacionales (n - 1) m
 sumaRacionalesAux :: Integer -> Integer -> Float
 sumaRacionalesAux n 1 = fromIntegral n
 sumaRacionalesAux n m = ((fromIntegral n) / (fromIntegral m)) + sumaRacionalesAux n (m - 1)
+
+-- Ej 16
+-- a
+menorDivisor :: Integer -> Integer
+menorDivisor n = menorDivisorAux n 2
+
+menorDivisorAux :: Integer -> Integer -> Integer
+menorDivisorAux n i 
+    | n `mod` i == 0 = i
+    | otherwise = menorDivisorAux n (i + 1)
+
+-- b
+esPrimo :: Integer -> Bool
+esPrimo n 
+    | menorDivisor n == n = True
+    | otherwise = False
+
+-- c
+sonCoprimos :: Integer -> Integer -> Bool
+sonCoprimos a b = maxComunDenom a b == 1
+
+maxComunDenom :: Integer -> Integer -> Integer
+maxComunDenom a 0 = a
+maxComunDenom a b = maxComunDenom b (a `mod` b)
+
+-- d
+nEsimoPrimo :: Integer -> Integer
+nEsimoPrimo n = nEsimoPrimoAux n 2
+
+nEsimoPrimoAux :: Integer -> Integer -> Integer
+nEsimoPrimoAux n i 
+    | esPrimo i && n == 1 = i
+    | esPrimo i = nEsimoPrimoAux (n - 1) (i + 1)
+    | otherwise = nEsimoPrimoAux n (i + 1)
