@@ -114,8 +114,17 @@ sumatoriaSobreM n m = (n ^ m) + sumatoriaSobreM n (m - 1)
 -- Ej 14
 sumaPotencias :: Integer -> Integer -> Integer -> Integer
 sumaPotencias _ 0 _ = 0
-sumaPotencias q n m = sumaPotencias q (n - 1) m + sumatoriaInterna q n m
+sumaPotencias q n m = sumaPotencias q (n - 1) m + sumatoriaInternaPot q n m
 
-sumatoriaInterna :: Integer -> Integer -> Integer -> Integer
-sumatoriaInterna _ _ 0 = 0
-sumatoriaInterna i j k = i ^ (j + k) + sumatoriaInterna i j (k - 1)
+sumatoriaInternaPot :: Integer -> Integer -> Integer -> Integer
+sumatoriaInternaPot _ _ 0 = 0
+sumatoriaInternaPot i j k = i ^ (j + k) + sumatoriaInternaPot i j (k - 1)
+
+-- Ej 15
+sumaRacionales :: Integer -> Integer -> Float
+sumaRacionales 1 m = sumaRacionalesAux 1 m
+sumaRacionales n m = sumaRacionalesAux n m + sumaRacionales (n - 1) m
+
+sumaRacionalesAux :: Integer -> Integer -> Float
+sumaRacionalesAux n 1 = fromIntegral n
+sumaRacionalesAux n m = ((fromIntegral n) / (fromIntegral m)) + sumaRacionalesAux n (m - 1)
