@@ -191,3 +191,20 @@ elMayorDeLosDos :: Integer -> Integer -> Integer
 elMayorDeLosDos a b 
     | a > b = a
     | otherwise = b
+
+-- Ej 21
+pitagoras :: Integer -> Integer -> Integer -> Integer
+pitagoras p q r = iteradorEnP p q (r * r)
+
+iteradorEnP :: Integer -> Integer -> Integer -> Integer
+iteradorEnP 0 0 r2 = 1
+iteradorEnP 0 q r2 = iteradorEnQ 0 q r2
+iteradorEnP p q r2 = iteradorEnQ (p * p) q r2 + iteradorEnP (p - 1) q r2
+
+iteradorEnQ :: Integer -> Integer -> Integer -> Integer
+iteradorEnQ p2 0 r2 
+    | p2 <= r2 = 1
+    | otherwise = 0
+iteradorEnQ p2 q r2 
+    | p2 + (q * q) <= r2 = iteradorEnQ p2 (q - 1) r2 + 1
+    | otherwise = iteradorEnQ p2 (q - 1) r2
