@@ -110,3 +110,12 @@ dobleSumatoria n m = sumatoriaSobreM n m + dobleSumatoria (n - 1) m
 sumatoriaSobreM :: Integer -> Integer -> Integer
 sumatoriaSobreM n 1 = n
 sumatoriaSobreM n m = (n ^ m) + sumatoriaSobreM n (m - 1)
+
+-- Ej 14
+sumaPotencias :: Integer -> Integer -> Integer -> Integer
+sumaPotencias _ 0 _ = 0
+sumaPotencias q n m = sumaPotencias q (n - 1) m + sumatoriaInterna q n m
+
+sumatoriaInterna :: Integer -> Integer -> Integer -> Integer
+sumatoriaInterna _ _ 0 = 0
+sumatoriaInterna i j k = i ^ (j + k) + sumatoriaInterna i j (k - 1)
