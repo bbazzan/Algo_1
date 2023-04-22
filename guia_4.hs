@@ -1,4 +1,3 @@
-import Distribution.Simple.Setup (showBuildInfoCommand)
 -- Ej 1
 fibonacci :: Integer -> Integer
 fibonacci 0 = 1
@@ -52,3 +51,10 @@ cantDigitos :: Integer -> Integer
 cantDigitos n 
     | n < 10 = 1
     | otherwise  = 1 + cantDigitos (n `div` 10)
+
+-- Ej 9
+esCapicua :: Integer -> Bool
+esCapicua n 
+    | cantDigitos n == 1 = True
+    | cantDigitos n == 2 || cantDigitos n == 3 = iesimoDigito n 1 == (n `mod` 10)
+    | otherwise = iesimoDigito n 1 == (n `mod` 10) && esCapicua (div (mod n (10 ^ ((cantDigitos n) - 1))) 10)
