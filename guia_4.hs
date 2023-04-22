@@ -79,3 +79,17 @@ f3 q n = q ^ (2 * n) + q ^ ((2 * n) - 1) + f3 q (n - 1)
 f4 :: Float -> Integer -> Float
 f4 q 0 = 1
 f4 q n = f3 q n - f2 q (n - 1)  -- suma de n a 2n = suma de 0 a 2n - suma de 0 n-1
+
+-- Ej 11
+-- a
+eAprox :: Integer -> Float
+eAprox 0 = 1
+eAprox n = (1.0 / fromIntegral (factorial n)) + eAprox (n - 1)
+
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+
+-- b
+e :: Float
+e = eAprox 10
