@@ -172,3 +172,22 @@ esFibonacciAux n i
     | fibonacci i == n = True
     | fibonacci i > n = False
     | otherwise = esFibonacciAux n (i + 1)
+
+-- Ej 18
+mayorDigitoPar :: Integer -> Integer
+mayorDigitoPar x 
+    | ultimoDigito == restoDeLosDigitos && not (esPar x) = -1
+    | ultimoDigito == restoDeLosDigitos && esPar ultimoDigito = ultimoDigito
+    | esPar ultimoDigito = elMayorDeLosDos ultimoDigito (mayorDigitoPar restoDeLosDigitos)
+    | otherwise = mayorDigitoPar restoDeLosDigitos 
+    where 
+        ultimoDigito = x `mod` 10 
+        restoDeLosDigitos = x `div` 10
+
+esPar :: Integer -> Bool
+esPar x = x `mod` 2 == 0
+
+elMayorDeLosDos :: Integer -> Integer -> Integer
+elMayorDeLosDos a b 
+    | a > b = a
+    | otherwise = b
