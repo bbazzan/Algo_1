@@ -9,3 +9,7 @@ ultimo :: [t] -> t
 ultimo [x] = x
 ultimo (_:xs) = ultimo xs
 
+-- Ej 3
+principio :: [t] -> [t]
+principio [x] = []
+principio (x:xs) = x : principio xs
