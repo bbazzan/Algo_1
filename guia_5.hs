@@ -1,4 +1,6 @@
 import Distribution.Simple.Utils (xargs)
+import Language.Haskell.TH (Lit(IntegerL))
+import Data.Map.Internal.Debug (ordered)
 -- Ej 1
 -- a
 longitud :: [t] -> Integer
@@ -74,3 +76,70 @@ todosPertenecen (x:xs) ys = pertenece x ys && todosPertenecen xs ys
 -- i
 capicua :: (Eq t) => [t] -> Bool
 capicua xs = xs == reverso xs
+
+-- Ej 3
+-- a
+sumatoria :: [Integer] -> Integer
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
+-- b
+productoria :: [Integer] -> Integer
+productoria [] = 1
+productoria (x:xs) = x * productoria xs
+
+-- c
+maximo :: [Integer] -> Integer
+maximo [x] = x
+maximo (x:xs) = maximoEntreDos x (maximo xs)
+
+maximoEntreDos :: Integer -> Integer -> Integer
+maximoEntreDos x y = if x > y then x else y
+
+-- d
+sumarN :: Integer -> [Integer] -> [Integer]
+sumarN _ [] = []
+sumarN n (x:xs) = (n + x) : sumarN n xs
+
+-- e
+sumarElPrimero :: [Integer] -> [Integer]
+sumarElPrimero [] = []
+sumarElPrimero (x:xs) = sumarN x (x:xs)
+
+-- f
+sumarElUltimo :: [Integer] -> [Integer]
+sumarElUltimo [] = []
+sumarElUltimo xs = sumarN (ultimo xs) xs
+
+-- g
+pares :: [Integer] -> [Integer]
+pares [] = []
+pares (x:xs) 
+    | esPar x = x : pares xs
+    | otherwise = pares xs
+
+esPar :: Integer -> Bool
+esPar x = x `mod` 2 == 0
+
+-- h
+multiplosDeN :: Integer -> [Integer] -> [Integer]
+multiplosDeN _ [] = []
+multiplosDeN n (x:xs) 
+    | esMultiploDe x n = x : multiplosDeN n xs
+    | otherwise = multiplosDeN n xs
+
+esMultiploDe :: Integer -> Integer -> Bool
+esMultiploDe x y 
+    | (abs (x) >= abs (y)) && (abs (x) `mod` abs (y) == 0) = True
+    | otherwise = False
+
+-- i
+ordenar :: [Integer] -> [Integer]
+ordenar [] = []
+ordenar (x:xs) = insertar x (ordenar xs)
+
+insertar :: Integer -> [Integer] -> [Integer]
+insertar x [] = [x]
+insertar x (y:ys) 
+    | x <= y = x : y : ys
+    | otherwise = y : insertar x ys
