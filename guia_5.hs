@@ -143,3 +143,62 @@ insertar x [] = [x]
 insertar x (y:ys) 
     | x <= y = x : y : ys
     | otherwise = y : insertar x ys
+ 
+-- Ej 4
+-- a
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos [x] = [x]
+sacarBlancosRepetidos (x:y:xs) 
+    | x == ' ' && y == ' ' = sacarBlancosRepetidos (y:xs)
+    | otherwise = x : sacarBlancosRepetidos (y:xs)
+
+-- b
+contarPalabras :: [Char] -> Integer
+contarPalabras [] = 0
+contarPalabras xs = contarPalabrasAux (sacarBlancosRepetidos xs) 0 False
+
+contarPalabrasAux :: [Char] -> Integer -> Bool -> Integer
+contarPalabrasAux [] cuenta _ = cuenta
+contarPalabrasAux (x:xs) cuenta enPalabra 
+    | x == ' ' = contarPalabrasAux xs cuenta False
+    | not enPalabra = contarPalabrasAux xs (cuenta + 1) True
+    | otherwise = contarPalabrasAux xs cuenta True
+
+-- c 
+palabraMasLarga :: [Char] -> [Char]
+palabraMasLarga xs = auxPML (sacarBlancosRepetidos xs) [] []
+    where
+        auxPML [] actual masLarga = if longitud actual > longitud masLarga then actual else masLarga
+        auxPML (x:xs) actual masLarga 
+            | x == ' ' = auxPML xs [] (if longitud actual > longitud masLarga then actual else masLarga)
+            | otherwise = auxPML xs (actual ++ [x]) masLarga
+
+-- d
+palabras :: [Char] -> [[Char]]
+palabras xs = auxPalabras (sacarBlancosRepetidos xs) [] []
+    where 
+        auxPalabras [] actual resultado = if null actual then resultado else resultado ++ [actual]
+        auxPalabras (x:xs) actual resultado 
+            | x == ' ' = auxPalabras xs [] (if null actual then resultado else resultado ++ [actual])
+            | otherwise = auxPalabras xs (actual ++ [x]) resultado
+
+-- e
+aplanar :: [[Char]] -> [Char]
+aplanar [] = []
+aplanar (x:xs) = x ++ aplanar xs
+
+-- f
+aplanarConBlancos :: [[Char]] -> [Char]
+aplanarConBlancos [] = []
+aplanarConBlancos [x] = x
+aplanarConBlancos (x:xs) = x ++ " " ++ aplanarConBlancos xs
+
+-- g
+aplanarConNBlancos :: [[Char]] -> Integer -> [Char]
+aplanarConNBlancos [] _ = []
+aplanarConNBlancos [x] n = x
+aplanarConNBlancos (x:xs) n = x ++ replicar n ' ' ++ aplanarConNBlancos xs n 
+    where 
+        replicar 0 _ = []
+        replicar m c = c : replicar (m-1) c
