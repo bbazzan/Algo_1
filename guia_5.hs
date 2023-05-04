@@ -1,5 +1,5 @@
 import Distribution.Simple.Utils (xargs)
-import Language.Haskell.TH (Lit(IntegerL))
+import Language.Haskell.TH (Lit(IntegerL), nameBase)
 import Data.Map.Internal.Debug (ordered)
 -- Ej 1
 -- a
@@ -9,11 +9,13 @@ longitud (_:xs) = 1 + longitud xs
 
 -- b
 ultimo :: [t] -> t
+ultimo [] = undefined
 ultimo [x] = x
 ultimo (_:xs) = ultimo xs
 
 -- c
 principio :: [t] -> [t]
+principio [] = []
 principio [x] = []
 principio (x:xs) = x : principio xs
 
@@ -90,6 +92,7 @@ productoria (x:xs) = x * productoria xs
 
 -- c
 maximo :: [Integer] -> Integer
+maximo [] = undefined
 maximo [x] = x
 maximo (x:xs) = maximoEntreDos x (maximo xs)
 
@@ -202,3 +205,41 @@ aplanarConNBlancos (x:xs) n = x ++ replicar n ' ' ++ aplanarConNBlancos xs n
     where 
         replicar 0 _ = []
         replicar m c = c : replicar (m-1) c
+
+-- Ej 5
+-- a
+nat2bin :: Integer -> [Integer]
+nat2bin 0 = [0]
+nat2bin n = reverse (auxiliar n) 
+    where 
+        auxiliar 0 = []
+        auxiliar n = (n `mod` 2) : auxiliar (n `div` 2)
+
+-- b
+bin2nat :: [Integer] -> Integer
+bin2nat [] = 0
+bin2nat (x:xs) = x * 2 ^ longitud xs + bin2nat xs
+
+-- c
+nat2hex :: Int -> [Char]
+nat2hex n 
+    | n < 16 = [nat2digito n]
+    | otherwise = nat2hex (n `div` 16) ++ [nat2digito (n `mod` 16)]
+    where nat2digito x = "0123456789ABCDEF" !! x
+
+-- d
+sumaAcumulada :: (Num t) => [t] -> [t]
+sumaAcumulada xs = sumaAcumuladaAux 0 xs
+    where sumaAcumuladaAux _ [] = []
+          sumaAcumuladaAux c (x:xs) = (c + x) : sumaAcumuladaAux (c + x) xs
+
+-- e
+descomponerEnPrimos :: [Integer] -> [[Integer]]
+descomponerEnPrimos [] = []
+descomponerEnPrimos (x:xs) = factorizar x : descomponerEnPrimos xs
+
+factorizar :: Integer -> [Integer]
+factorizar n 
+    | n <= 1 = []
+    | otherwise = factorPrimoMasPequeño n : factorizar (n `div` factorPrimoMasPequeño n)
+    where factorPrimoMasPequeño n = head [x | x <- [2..n], n `mod` x == 0]
