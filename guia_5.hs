@@ -1,6 +1,3 @@
-import Distribution.Simple.Utils (xargs)
-import Language.Haskell.TH (Lit(IntegerL), nameBase)
-import Data.Map.Internal.Debug (ordered)
 -- Ej 1
 -- a
 longitud :: [t] -> Integer
