@@ -41,4 +41,51 @@ def factorial_4() -> int:
 def factorial_5() -> int:
     return 5*factorial_4()
 
-print(factorial_5())
+# print(factorial_5())
+
+# Ej 2
+# a
+def imprimir_saludo(nombre: str):
+    return print("hola", nombre)
+
+# imprimir_saludo("Bruno")
+
+# b
+def raiz_cuadrada_de(numero: int) -> float:
+    return m.sqrt(numero)
+
+# print(raiz_cuadrada_de(2))
+
+# c
+def imprimir_dos_veces(estribillo: str):
+    return print(estribillo*2)
+
+# imprimir_dos_veces("muchaaaaaachos!")
+
+# d
+def es_multiplo_de(n: int, m: int) -> bool:
+    k = n%m
+    if k == 0:
+        return True
+    else:
+        return False
+
+# print(es_multiplo_de(5, 4))
+# print(es_multiplo_de(8, 4))
+
+# e
+def es_par(numero: int) -> bool:
+    if es_multiplo_de(numero, 2) == True:
+        return True
+    else:
+        return False
+
+# print(es_par(18))
+# print(es_par(19))
+
+# f
+def cantidad_de_pizzas(comensales: int, min_cant_de_porciones: int) -> int:
+    return m.ceil(comensales*min_cant_de_porciones/8)
+
+# print(cantidad_de_pizzas(5, 4))
+
