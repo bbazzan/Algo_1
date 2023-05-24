@@ -89,3 +89,21 @@ def cantidad_de_pizzas(comensales: int, min_cant_de_porciones: int) -> int:
 
 # print(cantidad_de_pizzas(5, 4))
 
+# Ej 3
+# a
+def alguno_es_0(n1: float, n2: float) -> bool:
+    return (n1 == 0 or n2 == 0)
+
+# print(alguno_es_0(0, 2))
+
+# b
+def ambos_son_0(n1: float, n2: float) -> bool:
+    return (n1 == 0 and n2 == 0)
+
+# print(ambos_son_0(0, 0))
+
+# c
+def es_nombre_largo(nombre: str) -> bool:
+    return (len(nombre) <= 8 and len(nombre) >= 3)
+
+print(es_nombre_largo("Bruno"))
