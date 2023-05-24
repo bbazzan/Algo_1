@@ -244,6 +244,3 @@ def viaje_en_el_tiempo(año_de_partida: int, año_de_llegada: int):
     return
 
 # viaje_en_el_tiempo(2023, 2000)
-
-# f
-# me da paja hacer esto xdd
