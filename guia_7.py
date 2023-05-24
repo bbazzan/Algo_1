@@ -106,4 +106,10 @@ def ambos_son_0(n1: float, n2: float) -> bool:
 def es_nombre_largo(nombre: str) -> bool:
     return (len(nombre) <= 8 and len(nombre) >= 3)
 
-print(es_nombre_largo("Bruno"))
+# print(es_nombre_largo("Bruno"))
+
+# d
+def es_bisiesto(año: int) -> bool:
+    return (es_multiplo_de(año, 400) or (es_multiplo_de(año, 4) and not(es_multiplo_de(año, 100))))
+
+# print(es_bisiesto(1600))
