@@ -113,3 +113,33 @@ def es_bisiesto(año: int) -> bool:
     return (es_multiplo_de(año, 400) or (es_multiplo_de(año, 4) and not(es_multiplo_de(año, 100))))
 
 # print(es_bisiesto(1600))
+
+# Ej 4
+# 3kg por cada cm hasta 3m
+# 2kg por cada cm arriba de 3m
+# por ejemplo: 2m pesan 600kg, y 5m pesan 1300kg
+# a la fabrica le sirven arboles de entre 400 y 1000kg
+
+def peso_pino(altura_del_pino: int) -> int:
+    '''toma la altura del pino y devuleve su peso segun la siguiente regla:
+    3kg por cada cm hasta 3m; 2kg por cada cm arriba de 3m'''
+    if altura_del_pino <= 300:
+        peso = altura_del_pino*3
+    else:
+        peso = 300*3 + altura_del_pino*2
+    
+    return peso
+
+def es_peso_util(peso_del_pino: int) -> bool:
+    '''determina si un pino es util dependiendo de su peso segun la siguiente regla:
+    el pino es util si su peso es mayor a 400kg y menor a 1000kg'''
+    return (peso_del_pino >= 400 and peso_del_pino <= 1000)
+
+def sirve_pino(altura_del_pino: int) -> bool:
+    '''a partir de la altura del pino determina si el pino es util en base al peso'''
+    peso_del_pino: int = peso_pino(altura_del_pino)
+    es_util: bool = es_peso_util(peso_del_pino)
+
+    return es_util
+
+print(sirve_pino(200))
