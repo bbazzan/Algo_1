@@ -194,3 +194,56 @@ def trabajo_o_vacaciones(sexo: str, edad: int) -> str:
 # print(trabajo_o_vacaciones("F", 6))
 # print(trabajo_o_vacaciones("F", 60))
 
+# Ej 6
+# a
+def imprimir_numeros_del_1_al_10():
+    i = 1
+    while i <= 10:
+        print(i)
+        i += 1
+    return
+
+# imprimir_numeros_del_1_al_10()
+
+# b
+def imprimir_numero_pares_entre_el_10_y_el_40():
+    i = 10
+    while i <= 40:
+        print(i)
+        i += 2
+    return
+
+# imprimir_numero_pares_entre_el_10_y_el_40()
+
+# c
+def imprimir_eco_10_veces():
+    i = 0
+    while i < 10:
+        print("eco")
+        i += 1
+    return
+
+# imprimir_eco_10_veces()
+
+# d
+def cuenta_regresiva_para_despegue(n: int):
+    while n > 0:
+        print(n)
+        n -= 1
+    print("Despegue!")
+    return
+
+# cuenta_regresiva_para_despegue(10)
+
+# e
+def viaje_en_el_tiempo(año_de_partida: int, año_de_llegada: int):
+    año = año_de_partida
+    while año > año_de_llegada:
+        año -= 1
+        print("Viajo un año al pasado, estamos en el año", str(año))
+    return
+
+# viaje_en_el_tiempo(2023, 2000)
+
+# f
+# me da paja hacer esto xdd
