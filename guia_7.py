@@ -142,4 +142,55 @@ def sirve_pino(altura_del_pino: int) -> bool:
 
     return es_util
 
-print(sirve_pino(200))
+# print(sirve_pino(200))
+
+# Ej 5
+# a
+def devolver_el_doble_si_es_par(n: int) -> int:
+    if es_multiplo_de(n, 2):
+        return 2*n
+    else:
+        return n
+    
+def devolver_valor_si_es_par_sino_el_que_sigue(n: int) -> int:
+    if es_multiplo_de(n, 2):
+        return n
+    else:
+        return n+1
+
+def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiple9(n: int) -> int:
+    if es_multiplo_de(n, 3):
+        return n*2
+    elif es_multiplo_de(n, 9):
+        return n*3
+    else:
+        return n
+    
+def nombre_de_mas_de_5_letras(nombre: str) -> str:
+    if len(nombre) >= 5:
+        return "Tu nombre tiene muchas letras!"
+    else:
+        return "Tu nombre tiene menos de 5 caracteres"
+
+def trabajo_o_vacaciones(sexo: str, edad: int) -> str:
+    if (sexo == "M" and (edad >= 65 or edad < 18)) or (sexo == "F" and (edad >= 60 or edad < 18)):
+        return "Andá de vacaciones"
+    else:
+        return "Te toca trabajar"
+
+# print(devolver_el_doble_si_es_par(4))
+# print(devolver_el_doble_si_es_par(3))
+# print(devolver_valor_si_es_par_sino_el_que_sigue(4))
+# print(devolver_valor_si_es_par_sino_el_que_sigue(3))
+# print(devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiple9(21))
+# print(devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiple9(18))
+# print(devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiple9(7))
+# print(nombre_de_mas_de_5_letras("Bruno"))
+# print(nombre_de_mas_de_5_letras("Sol"))
+# print(trabajo_o_vacaciones("M", 27))
+# print(trabajo_o_vacaciones("M", 13))
+# print(trabajo_o_vacaciones("M", 70))
+# print(trabajo_o_vacaciones("F", 27))
+# print(trabajo_o_vacaciones("F", 6))
+# print(trabajo_o_vacaciones("F", 60))
+
