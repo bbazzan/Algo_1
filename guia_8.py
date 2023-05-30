@@ -1,4 +1,5 @@
 from typing import List
+import numpy as np
 
 # Ej 1
 ### a
@@ -273,3 +274,100 @@ def reemplazaVocales(texto: str) -> str:
 
 # e
 # lo hice en el 1)f)
+
+# Ej 3
+# a
+def listaDeEstudiantesInteractiva() -> List[str]:
+    print("Ingrese el primer nombre o listo para terminar")
+    nombre = input()
+    res = []
+    
+    while nombre != "listo":
+        res.append(nombre)
+        print("Ingrese el siguiente nombre o listo para terminar")
+        nombre = input()
+        
+    return res
+
+# print(listaDeEstudiantesInteractiva())
+
+# b
+def simulacionDeSUBE() -> List[tuple]:
+    print("Bienvenido a la simulacion de su monedero virtual")
+    print("Para cargar creditos, ingrese C")
+    print("Para descontar creditos, ingrese D")
+    print("Para terminar ingrese X")
+    
+    comando = ""
+    saldo = 0
+    res = []
+    
+    while comando != "X":
+        comando = input()
+        if comando == "C":
+            print("Ingrese la cantidad de creditos que quiere cargar:")
+            carga = int(input())
+            saldo += carga
+            res.append((comando, carga))
+            print("Para cargar creditos, ingrese C")
+            print("Para descontar creditos, ingrese D")
+            print("Para terminar ingrese X")
+        elif comando == "D":
+            print("Ingrese la cantidad de creditos que quiere descontar:")
+            descuento = int(input())
+            saldo -= descuento
+            res.append((comando, descuento))
+            print("Para cargar creditos, ingrese C")
+            print("Para descontar creditos, ingrese D")
+            print("Para terminar ingrese X")
+        elif comando == "X":
+            break
+        else:
+            print("El comando ingresado no es valido, intente de nuevo")
+    
+    return res
+
+# print(simulacionDeSUBE())
+
+# c
+def sieteYMedio():
+    cartas = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12]
+    carta = np.random.choice(cartas)
+    res = [carta]
+    suma = 0
+    
+    print("Su carta es:", carta)
+    if carta <= 7:
+        suma += carta
+    else:
+        suma += 0.5
+        
+    comando = ""
+    
+    while comando != "plantar":
+        print("Desea sacar otra carta (ingrese sacar) o plantarse (ingrese plantar)")
+        comando = input()
+        if comando == "sacar" and suma <= 7.5:
+            carta = np.random.choice(cartas)
+            print("Su siguiente carta es:", carta)
+            if carta <= 7:
+                suma += carta
+                print("Su suma es:", suma)
+                res.append(carta)
+            else:
+                suma += 0.5
+                print("Su suma es:", suma)
+                res.append(carta)
+            if suma > 7.5:
+                print("Se ha excedido de 7.5! Su suma es:", suma)
+                break
+        elif suma > 7.5:
+            print("Se ha excedido de 7.5! Su suma es:", suma)
+            break
+        elif comando == "plantar":
+            print("Se ha plantado, su suma es:", suma)
+            break
+    
+    return res
+
+# print(sieteYMedio())
