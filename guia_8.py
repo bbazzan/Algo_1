@@ -217,4 +217,59 @@ def tieneAlMenos3VocalesDistintas(palabra: str) -> bool:
     return res
 
 # print(tieneAlMenos3VocalesDistintas("murcielago"))
+
+# Ej 2
+# a
+def pone0sEnPosicionesPares(lista: List[int]) -> List[int]:
+    for i in range(len(lista)):
+        if i%2 == 0:
+            lista[i] = 0
     
+    return lista
+
+# print(pone0sEnPosicionesPares([1,2,3,4,5,6,7,8,9]))
+
+# b
+def nuevaListaCon0sEnPosicionesPares(lista: List[int]) -> List[int]:
+    res = lista
+    
+    for i in range(len(lista)):
+        if i%2 == 0:
+            lista[i] = 0
+    
+    return res
+
+# l = [1,2,3,4,5,6,7,8,9]
+# print(l)
+# print(nuevaListaCon0sEnPosicionesPares(l))
+
+# c
+def remueveVocales(texto: str) -> str:
+    res = ""
+    vocales = "aeiou"
+    
+    for letra in texto:
+        if not (perteneceStr(vocales, letra)):
+            res += letra
+    
+    return res
+
+# print(remueveVocales("hola mundo"))
+
+# d
+def reemplazaVocales(texto: str) -> str:
+    res = ""
+    vocales = "aeiou"
+    
+    for letra in texto:
+        if (perteneceStr(vocales, letra)):
+            res += "_"
+        else:
+            res += letra
+    
+    return res
+
+# print(reemplazaVocales("hola mundo"))
+
+# e
+# lo hice en el 1)f)
