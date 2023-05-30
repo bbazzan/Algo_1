@@ -1,5 +1,6 @@
 from typing import List
 import numpy as np
+from array import *
 
 # Ej 1
 ### a
@@ -232,7 +233,7 @@ def pone0sEnPosicionesPares(lista: List[int]) -> List[int]:
 
 # b
 def nuevaListaCon0sEnPosicionesPares(lista: List[int]) -> List[int]:
-    res = lista
+    res: List[int] = lista
     
     for i in range(len(lista)):
         if i%2 == 0:
@@ -246,8 +247,8 @@ def nuevaListaCon0sEnPosicionesPares(lista: List[int]) -> List[int]:
 
 # c
 def remueveVocales(texto: str) -> str:
-    res = ""
-    vocales = "aeiou"
+    res: str = ""
+    vocales: str = "aeiou"
     
     for letra in texto:
         if not (perteneceStr(vocales, letra)):
@@ -259,8 +260,8 @@ def remueveVocales(texto: str) -> str:
 
 # d
 def reemplazaVocales(texto: str) -> str:
-    res = ""
-    vocales = "aeiou"
+    res: str = ""
+    vocales: str = "aeiou"
     
     for letra in texto:
         if (perteneceStr(vocales, letra)):
@@ -279,8 +280,8 @@ def reemplazaVocales(texto: str) -> str:
 # a
 def listaDeEstudiantesInteractiva() -> List[str]:
     print("Ingrese el primer nombre o listo para terminar")
-    nombre = input()
-    res = []
+    nombre: str = input()
+    res: List[str] = []
     
     while nombre != "listo":
         res.append(nombre)
@@ -298,15 +299,15 @@ def simulacionDeSUBE() -> List[tuple]:
     print("Para descontar creditos, ingrese D")
     print("Para terminar ingrese X")
     
-    comando = ""
-    saldo = 0
-    res = []
+    comando: str = ""
+    saldo: float = 0
+    res: List[tuple] = []
     
     while comando != "X":
         comando = input()
         if comando == "C":
             print("Ingrese la cantidad de creditos que quiere cargar:")
-            carga = int(input())
+            carga: float = float(input())
             saldo += carga
             res.append((comando, carga))
             print("Para cargar creditos, ingrese C")
@@ -314,7 +315,7 @@ def simulacionDeSUBE() -> List[tuple]:
             print("Para terminar ingrese X")
         elif comando == "D":
             print("Ingrese la cantidad de creditos que quiere descontar:")
-            descuento = int(input())
+            descuento: float = float(input())
             saldo -= descuento
             res.append((comando, descuento))
             print("Para cargar creditos, ingrese C")
@@ -331,10 +332,10 @@ def simulacionDeSUBE() -> List[tuple]:
 
 # c
 def sieteYMedio():
-    cartas = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12]
-    carta = np.random.choice(cartas)
-    res = [carta]
-    suma = 0
+    cartas: List[int] = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12]
+    carta: int = np.random.choice(cartas)
+    res: List[int] = [carta]
+    suma: int = 0
     
     print("Su carta es:", carta)
     if carta <= 7:
@@ -342,7 +343,7 @@ def sieteYMedio():
     else:
         suma += 0.5
         
-    comando = ""
+    comando: str = ""
     
     while comando != "plantar":
         print("Desea sacar otra carta (ingrese sacar) o plantarse (ingrese plantar)")
@@ -371,3 +372,126 @@ def sieteYMedio():
     return res
 
 # print(sieteYMedio())
+
+# Ej 4
+# a
+def perteneceACadaUno(s: List[List[int]], e: int) -> bool:
+    res_parcial: List[bool] = []
+    res: bool = False
+
+    for lista in s:
+        if pertenece(lista, e):
+            res_parcial.append(True)
+        else:
+            res_parcial.append(False)
+
+    if sum(res_parcial) == len(res_parcial):
+        res = True
+    
+    return res
+
+# print(perteneceACadaUno([[1,2,3], [1,1,1], [1,5,6]], 2))
+
+# b
+def esMatriz(s: List[List[int]]) -> bool:
+    tiene_elementos: bool = len(s) > 0
+    el_primer_elemento_tiene_elementos: bool = len(s[0]) > 0
+    
+    el_resto_tienen_la_misma_cantidad_que_el_primero: bool = False
+    res_parcial = []
+    
+    for i in range(1, len(s[0])):
+        if len(s[i]) == len(s[0]):
+            res_parcial.append(True)
+        else:
+            res_parcial.append(False)
+    
+    if sum(res_parcial) == len(res_parcial):
+        el_resto_tienen_la_misma_cantidad_que_el_primero = True
+    
+    return tiene_elementos and el_primer_elemento_tiene_elementos and el_resto_tienen_la_misma_cantidad_que_el_primero
+
+# m = [
+#     [1,2],
+#     [1,2]
+# ]
+# print(esMatriz(m))
+
+# m2 = [
+#     [1,2],
+#     [1,2,3]
+# ]
+# print(esMatriz(m2))
+
+# c
+def filasOrdenadas(m: List[List[int]]) -> List[bool]:
+    res: List[bool] = []
+    
+    for fila in m:
+        res.append(ordenados(fila))
+    
+    return res
+
+# m1 = [
+#     [1,2,3],
+#     [4,5,6],
+#     [7,8,9]
+# ]
+
+# print(filasOrdenadas(m1))
+
+# m2 = [
+#     [2,1,3],
+#     [4,6,5],
+#     [7,9,8]
+# ]
+
+# print(filasOrdenadas(m2))
+
+# d
+def multiplicaMatrizPorSiMisma(m: np.ndarray) -> np.ndarray:
+    d: int = len(m)
+        
+    res: np.ndarray = np.zeros((d,d))
+    
+    for i in range(d):
+        for j in range(d):
+            for n in range(d):
+                res[i,j] += m[i, n] * m[n, j] 
+                    
+    return res
+
+# print(multiplicaMatrizPorSiMisma(np.array([[1,2], [3,4]])))
+
+def multiplicaMatricesCuadradas(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    d = len(a)
+    res = np.zeros((d,d))
+    
+    for i in range(d):
+        for j in range(d):
+            for n in range(d):
+                res[i,j] += a[i, n] * b[n, j]
+    return res
+
+def matrizAleatoriaDeTamañoDALaP(d: int, p: float) -> np.ndarray:
+    matriz = np.random.randint(0,10,(d,d))
+    
+    print("Su matriz es:")
+    print(matriz)
+    
+    if p == 1:
+        res = matriz
+    elif p == 2:
+        res = multiplicaMatrizPorSiMisma(matriz)
+    else:
+        res = matriz
+        for i in range(int(p)-1):
+            res = multiplicaMatricesCuadradas(res, matriz)
+        
+                
+    print("El resultado de elevar la matriz a la", p, "es:")
+    print(res)
+    
+    return res
+
+# matrizAleatoriaDeTamañoDALaP(2,3)
