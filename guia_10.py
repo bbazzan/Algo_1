@@ -15,13 +15,33 @@ def existePalabra(palabra: str, nombre_archivo:str) -> bool:
     res: bool = False
     archivo: str = open(nombre_archivo, 'r')
     lineas: list[str] = archivo.readlines()
-    
+        
     for linea in lineas:
-        if perteneceStr(linea, palabra):
+        lista_palabras: list[str] = linea.split()
+        if perteneceStr(lista_palabras, palabra):
             res = True
     
     archivo.close()
     
     return res
 
-print(existePalabra("hola", "test.txt"))
+# print(existePalabra("mundo", "/Users/chronos/Documents/Algo_1/test.txt"))
+
+# c
+def cantidadApariciones(nombre_archivo: str, palabra: str) -> int:
+    res: int = 0
+    archivo: str = open(nombre_archivo, 'r')
+    lineas: list[str] = archivo.readlines()
+        
+    for linea in lineas:
+        lista_palabras: list[str] = linea.split()
+        for p in lista_palabras:
+            if p == palabra:
+                res += 1
+    
+    archivo.close()
+    
+    return res
+
+# print(cantidadApariciones("/Users/chronos/Documents/Algo_1/test.txt", "linea"))
+
