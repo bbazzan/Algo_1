@@ -45,3 +45,21 @@ def cantidadApariciones(nombre_archivo: str, palabra: str) -> int:
 
 # print(cantidadApariciones("/Users/chronos/Documents/Algo_1/test.txt", "linea"))
 
+# Ej 2
+# funcion que clona un archivo sin cometarios, donde los comentario son aquellas lineas cuando el
+# primer caracter es un '#' o espacio en blanco seguido de un '#'
+
+def clonarSinComentarios(nombre_archivo: str) -> None:
+    archivo: str = open(nombre_archivo, 'r')
+    lineas: list[str] = archivo.readlines()
+    archivo.close()
+    
+    archivo: str = open("/Users/chronos/Documents/Algo_1/clon.txt", 'w')
+    
+    for linea in lineas:
+        if linea[0] != "#" and linea[0] != " " and linea[1] != "#":
+            archivo.write(linea)
+    
+    archivo.close()
+    
+clonarSinComentarios("/Users/chronos/Documents/Algo_1/test.txt")
