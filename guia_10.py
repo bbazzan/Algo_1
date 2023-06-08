@@ -54,7 +54,7 @@ def clonarSinComentarios(nombre_archivo: str) -> None:
     lineas: list[str] = archivo.readlines()
     archivo.close()
     
-    archivo: str = open("/Users/chronos/Documents/Algo_1/clon.txt", 'w')
+    archivo: str = open("clon.txt", 'w')
     
     for linea in lineas:
         if linea[0] != "#" and linea[0] != " " and linea[1] != "#":
@@ -62,4 +62,21 @@ def clonarSinComentarios(nombre_archivo: str) -> None:
     
     archivo.close()
     
-clonarSinComentarios("/Users/chronos/Documents/Algo_1/test.txt")
+clonarSinComentarios("test.txt")
+
+# Ej 3
+# funcion que dado un archivo, crea uno nuevo pero con las lineas en orden inverso
+
+def invertirArchivo(nombre_archivo: str) -> None:
+    archivo: str = open(nombre_archivo, 'r')
+    lineas: list[str] = archivo.readlines()
+    archivo.close()
+    
+    archivo: str = open("reverso.txt", 'w')
+    
+    for i in range(len(lineas) - 1, -1, -1):
+        archivo.write(lineas[i])
+    
+    archivo.close()
+    
+invertirArchivo("test.txt")
