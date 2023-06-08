@@ -168,4 +168,18 @@ def generarPilaNumerosAlAzar(n: int, desde: int, hasta: int) -> Pila:
     
     return pila
 
-print(generarPilaNumerosAlAzar(10, 1, 100).queue)
+# print(generarPilaNumerosAlAzar(10, 1, 100).queue)
+
+# Ej 10
+# funcion que dada una pila de numeros, devuelve la cantidad de numeros que hay en la pila
+
+def cantidadNumeros(pila: Pila) -> int:
+    cantidad: int = 0
+    
+    while not pila.empty():
+        pila.get()
+        cantidad += 1
+    
+    return cantidad
+
+# print(cantidadNumeros(generarPilaNumerosAlAzar(10, 1, 100)))
