@@ -1,4 +1,10 @@
+Hola ciudad 
+Hola pais 
+Hola mundo 
 hola mundo
 segunda linea
 tercera linea
 # esta linea es un comentario
+Hola mundo 
+Hola galaxia 
+Hola universo
