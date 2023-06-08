@@ -1,4 +1,5 @@
 from guia_8 import perteneceStr
+from queue import LifoQueue as Pila
 
 # Ej 1
 # a
@@ -153,4 +154,18 @@ def generarNumerosAlAzar(n: int, desde: int, hasta: int) -> list[int]:
     import random
     return random.sample(range(desde, hasta), n)
 
-print(generarNumerosAlAzar(10, 1, 100))
+# print(generarNumerosAlAzar(10, 1, 100))
+
+# Ej 9
+# usando la funcion anterior, implemetar una funcion que genere una pila con los numeros generados 
+
+def generarPilaNumerosAlAzar(n: int, desde: int, hasta: int) -> Pila:
+    pila: Pila = Pila()
+    numeros: list[int] = generarNumerosAlAzar(n, desde, hasta)
+    
+    for numero in numeros:
+        pila.put(numero)
+    
+    return pila
+
+print(generarPilaNumerosAlAzar(10, 1, 100).queue)
