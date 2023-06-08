@@ -1,5 +1,6 @@
 from guia_8 import perteneceStr
 from queue import LifoQueue as Pila
+from queue import Queue as Cola
 
 # Ej 1
 # a
@@ -197,4 +198,38 @@ def buscarMayor(pila: Pila) -> int:
     
     return mayor
 
-print(buscarMayor(generarPilaNumerosAlAzar(10, 1, 100)))
+# print(buscarMayor(generarPilaNumerosAlAzar(10, 1, 100)))
+
+# Ej 12
+# funcion que dado un string con una formula artimetica, devuelve si los parentesis estan balanceados
+
+def estaBienBalanceada(formula: str) -> bool:
+    pila: Pila = Pila()
+    
+    for caracter in formula:
+        if caracter == "(":
+            pila.put(caracter)
+        elif caracter == ")":
+            if pila.empty():
+                return False
+            else:
+                pila.get()
+    
+    return pila.empty()
+
+# print(estaBienBalanceada("((2+3)*5)"))
+# print(estaBienBalanceada("((2+3)*5))"))
+
+# Ej 13
+# funcion que, usando generarNmerosAlAzar(), genere una cola con los numeros generados
+
+def generarColaNumerosAlAzar(n: int, desde: int, hasta: int) -> Cola:
+    cola: Cola = Cola()
+    numeros: list[int] = generarNumerosAlAzar(n, desde, hasta)
+    
+    for numero in numeros:
+        cola.put(numero)
+    
+    return cola
+
+print(generarColaNumerosAlAzar(10, 1, 100).queue)
