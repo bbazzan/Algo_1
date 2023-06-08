@@ -232,4 +232,18 @@ def generarColaNumerosAlAzar(n: int, desde: int, hasta: int) -> Cola:
     
     return cola
 
-print(generarColaNumerosAlAzar(10, 1, 100).queue)
+# print(generarColaNumerosAlAzar(10, 1, 100).queue)
+
+# Ej 14
+# funcion que dada una cola de numeros, devuelve la cantidad de numeros que hay en la cola
+
+def cantidadElementos(cola: Cola) -> int:
+    cantidad: int = 0
+    
+    while not cola.empty():
+        cola.get()
+        cantidad += 1
+    
+    return cantidad
+
+print(cantidadElementos(generarColaNumerosAlAzar(10, 1, 100)))
