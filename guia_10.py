@@ -246,4 +246,19 @@ def cantidadElementos(cola: Cola) -> int:
     
     return cantidad
 
-print(cantidadElementos(generarColaNumerosAlAzar(10, 1, 100)))
+# print(cantidadElementos(generarColaNumerosAlAzar(10, 1, 100)))
+
+# Ej 15
+# funcion que dada una cola de enteros busca el mayor de ellos y lo devuelve
+
+def buscarElMaximo(cola: Cola) -> int:
+    mayor: int = 0
+    
+    while not cola.empty():
+        numero: int = cola.get()
+        if numero > mayor:
+            mayor = numero
+    
+    return mayor
+
+print(buscarElMaximo(generarColaNumerosAlAzar(10, 1, 100)))
