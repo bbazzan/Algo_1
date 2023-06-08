@@ -334,7 +334,7 @@ def nPacientesUrgentes(c: Cola[(int, str, str)]) -> int:
 # funcion que dado un archivo de texto agrupa las palabras por longitud en un diccionario de formato
 # {long:cantidad_de_palabras_con_longitud_long}
 
-def agruparPorLongitud(nombre_archivo: str):
+def agruparPorLongitud(nombre_archivo: str) -> dict[int, int]:
     archivo = open(nombre_archivo, "r")
     texto = archivo.read()
     archivo.close()
@@ -351,4 +351,25 @@ def agruparPorLongitud(nombre_archivo: str):
     return diccionario
 
 # print(agruparPorLongitud("test.txt"))
+
+# Ej 19
+# funcion que hace un diccionario del estilo {lu:promedio} usando el archivo de notas y la funcion que calcula el promedio de notas
+
+def promedioDeAlumnos(nombre_archivo: str) -> dict[str, float]:
+    archivo = open(nombre_archivo, "r")
+    texto = archivo.read()
+    archivo.close()
+    lineas = texto.split("\n")
+    diccionario = {}
+    
+    for linea in lineas:
+        datos = linea.split(",")
+        lu = datos[0]
+        if not perteneceStr(list(diccionario.keys()), lu):
+            promedio = promedioEstudiante(lu)
+            diccionario[lu] = promedio
+        
+    return diccionario
+
+print(promedioDeAlumnos("notas.csv"))
 
