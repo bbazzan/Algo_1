@@ -328,4 +328,27 @@ def nPacientesUrgentes(c: Cola[(int, str, str)]) -> int:
     
     return cantidad
 
-print(nPacientesUrgentes(generarColaDeGuardia(10)))
+# print(nPacientesUrgentes(generarColaDeGuardia(10)))
+
+# Ej 18
+# funcion que dado un archivo de texto agrupa las palabras por longitud en un diccionario de formato
+# {long:cantidad_de_palabras_con_longitud_long}
+
+def agruparPorLongitud(nombre_archivo: str):
+    archivo = open(nombre_archivo, "r")
+    texto = archivo.read()
+    archivo.close()
+    palabras = texto.split()
+    diccionario = {}
+    
+    for palabra in palabras:
+        longitud = len(palabra)
+        if longitud in diccionario:
+            diccionario[longitud] += 1
+        else:
+            diccionario[longitud] = 1
+            
+    return diccionario
+
+# print(agruparPorLongitud("test.txt"))
+
