@@ -183,3 +183,18 @@ def cantidadNumeros(pila: Pila) -> int:
     return cantidad
 
 # print(cantidadNumeros(generarPilaNumerosAlAzar(10, 1, 100)))
+
+# Ej 11
+# funcion que dada una pila de enteros busca el mayor de ellos y lo devuelve
+
+def buscarMayor(pila: Pila) -> int:
+    mayor: int = 0
+    
+    while not pila.empty():
+        numero: int = pila.get()
+        if numero > mayor:
+            mayor = numero
+    
+    return mayor
+
+print(buscarMayor(generarPilaNumerosAlAzar(10, 1, 100)))
