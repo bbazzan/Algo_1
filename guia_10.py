@@ -371,5 +371,24 @@ def promedioDeAlumnos(nombre_archivo: str) -> dict[str, float]:
         
     return diccionario
 
-print(promedioDeAlumnos("notas.csv"))
+# print(promedioDeAlumnos("notas.csv"))
 
+# Ej 20
+# funcion que devuelve la palabra mas frecuente en un archivo de texto
+
+def laPalabraMasFrecuente(nombre_archivo: str) -> str:
+    archivo = open(nombre_archivo, "r")
+    texto = archivo.read()
+    archivo.close()
+    palabras = texto.split()
+    diccionario = {}
+    
+    for palabra in palabras:
+        if palabra in diccionario:
+            diccionario[palabra] += 1
+        else:
+            diccionario[palabra] = 1
+            
+    return max(diccionario, key=diccionario.get)
+
+print(laPalabraMasFrecuente("test.txt"))
