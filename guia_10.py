@@ -1,6 +1,7 @@
 from guia_8 import perteneceStr
 from queue import LifoQueue as Pila
 from queue import Queue as Cola
+import random
 
 # Ej 1
 # a
@@ -261,4 +262,43 @@ def buscarElMaximo(cola: Cola) -> int:
     
     return mayor
 
-print(buscarElMaximo(generarColaNumerosAlAzar(10, 1, 100)))
+# print(buscarElMaximo(generarColaNumerosAlAzar(10, 1, 100)))
+
+# Ej 16
+# a
+
+def armarSecuenciaDeBingo() -> Cola[int]:
+    numeros: list[int] = [i for i in range(0, 100)]
+    secuencia: Cola[int] = Cola()
+    
+    for i in range(0, 100):
+        numero = random.choice(numeros)
+        secuencia.put(numero)
+        numeros.remove(numero)
+        
+    return secuencia
+
+# b
+# funcion funcion que dado un carton de bingo (que es una lista de 12 numeros al azar entre el 0 y el 99)
+# y un secuencia de bingo como arriba devuelve el numero de jugadas de de la secuencia necesarias para que ese carton gane,
+# es decir que hayan salido los 12 numeros del carton
+
+def jugarCartonDeBingo(carton: list[int], bolillero: Cola[int]) -> int:
+    jugadas: int = 0
+    
+    while bolillero.empty() == False:
+        numero: int = bolillero.get()
+        print(numero)
+        jugadas += 1
+        
+        if numero in carton:
+            carton.remove(numero)
+            print(f'Carton: {carton}')
+            
+        if len(carton) == 0:
+            break
+    
+    return jugadas
+
+# print("Se necesitan :", jugarCartonDeBingo(generarNumerosAlAzar(12, 0, 99), armarSecuenciaDeBingo()), "jugadas para ganar")
+
