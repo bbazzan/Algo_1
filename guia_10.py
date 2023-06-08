@@ -302,3 +302,30 @@ def jugarCartonDeBingo(carton: list[int], bolillero: Cola[int]) -> int:
 
 # print("Se necesitan :", jugarCartonDeBingo(generarNumerosAlAzar(12, 0, 99), armarSecuenciaDeBingo()), "jugadas para ganar")
 
+# Ej 17
+
+def generarColaDeGuardia(n: int) -> Cola[(int, str, str)]:
+    cola: Cola = Cola()
+    
+    prioridad: list[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    nombres: list[str] = ["Juan", "Pedro", "Maria", "Jose", "Luis", "Ana", "Lucia", "Carlos", "Miguel", "Sofia"]
+    especialidad: list[str] = ["Traumatologia", "Psicologia", "Cardiologia", "Pediatria", "Oftalmologia", "Otorrinolaringologia", "Dermatologia", "Neurologia", "Ginecologia", "Urologia"]
+    
+    for i in range(n):
+        cola.put((random.choice(prioridad), random.choice(nombres), random.choice(especialidad)))
+        
+    # print(cola.queue)
+    
+    return cola
+
+def nPacientesUrgentes(c: Cola[(int, str, str)]) -> int:
+    cantidad: int = 0
+    
+    while not c.empty():
+        paciente: tuple(int, str, str) = c.get()
+        if paciente[0] <= 3:
+            cantidad += 1
+    
+    return cantidad
+
+print(nPacientesUrgentes(generarColaDeGuardia(10)))
