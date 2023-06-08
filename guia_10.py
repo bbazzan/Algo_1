@@ -146,3 +146,11 @@ def promedioEstudiante(lu: str):
 
 # print(promedioEstudiante("448/17"))
 
+# Ej 8
+# funcion que genera una lista de n numeros al azar usando random.sample() en el rango [desde, hasta]
+
+def generarNumerosAlAzar(n: int, desde: int, hasta: int) -> list[int]:
+    import random
+    return random.sample(range(desde, hasta), n)
+
+print(generarNumerosAlAzar(10, 1, 100))
