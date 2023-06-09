@@ -1,0 +1,60 @@
+### Ej 1
+(a)
+pred esPrimo(n: Z){
+    n>1 y solamente es divisible por 1 y por si mismo
+}
+
+(b)
+pred esPosicionValida(i: Z, l: seq<Z>){
+    para todo i: 0 <= i < |l|
+}
+
+(c)
+pred esMinimo(elem: Z, l: seq<Z>){
+    elem pertenece a l y es no hay ningun otro elemento de l menor a elem
+}
+
+(d)
+pred esMaximo(elem: Z, l: seq<Z>){
+    elem pertenece a l y es no hay ningun otro elemento de l mayor a elem
+}
+
+### Ej 2
+(a)
+problema min(a: Z, b: Z): Z{
+    requiere: {True}
+    asegura: {res = a y a<b o res = b y b<a}
+}
+
+(b)
+problema max(a: Z, b: Z): Z{
+    requiere: {True}
+    asegura: {res = a y a>b o res = b y b>a}
+}
+
+(c)
+problema elMayorPrimo(a: Z, b:Z): Z{
+    requiere: {esPrimo(a)}
+    requiere: {esPrimo(b)}
+    asegura: {res = a y a>b o res = b y b>a}
+}
+
+(d)
+problema buscar(l: seq<Z>, elem: Z): Z{
+    requiere: {elem pertenece a l}
+    asegura: {se cumple esPosicionValida(res, l) y ademas l[res] es elem}
+}
+
+(e)
+problema buscarMinimo(l: seq<Z>): Z{
+    requiere: {True}
+    asegura: {se cumplen esPosicionValida(res, l) y esMinimo(l[res], l)}
+}
+
+(f)
+problema #apariciones(n: Z, l: seq<Z>): Z{
+    requiere: {n pertenece a l}
+    asegura: {res es la cantidad de veces que aparece n en l}
+}
+
+(g)
