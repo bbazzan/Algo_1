@@ -75,3 +75,85 @@ problema borrar(s: seq<Z>, elem: Z): seq<Z>{
     asegura: {|result| = |s|-1 y para el i tal que s[i] = elem para j<i result[j] = s[j] y para j>=i result[j] = s[i+1]}
 }
 
+### Ej 3
+(a)
+le falta que l[resultado] sea una posicion valida de la
+
+### Ej 6
+(a)
+i -> resultado = 0
+ii -> resultado = 1 o resultado = -1
+iii -> resultado = 3*sqrt(3) o resultado = -3*sqrt(3)
+
+(b)
+i -> resultado = 3
+ii -> resultado = {0, 3}
+iii -> resultado = {0, 1, 2, 3, 4, 5}
+
+(c)
+i -> result = 3
+ii -> result = 0
+iii -> result = 0
+
+(d)
+para la entrada i de ambos
+
+### Ej 7
+(a)
+a no puede ser al mismo tiempo >=0 y <0
+
+(b)
+falta el caso a=0
+
+(c)
+es valida
+
+(d)
+es valida
+
+(e)
+es tautologia pq siempre uno de los antecedentes es falso entonces la implicacion es verdadera y por lo tanto la conjuncion es verdadera
+
+(f)
+es valida
+
+### Ej 8
+(a)
+x = 3 => x^2 = 9 => se cumple la postcondicion pues 9 > 3
+
+(b)
+x = 0.5 => x^2 = 0.25 => no se cumple
+x = 1 => x^2 = 1 => no se cumple
+x = -0.2 => x^2 = 0.04 => se cumple
+x = -7 => x^2 = 49 => se cumple
+
+(c)
+requiere: {x>1 v x<0}
+
+### Ej 9
+(a)
+P3 -> P1 -> P2
+
+(b)
+Q3 -> Q1 -> Q2
+
+### Ej 12
+(a)
+problema descomponerEnPrimos(n: Z): seq<ZxZ> {
+    requiere: {n > 1}
+    asegura: {esDescomposicion(res, n)}
+    asegura: {primosEnRes(res)}
+    asegura: {oredenadosPorP(res)}
+}
+
+pred esDescomposicion(res: seq<ZxZ>, n: Z) {
+    n = prod_{i=0}^{|res|-1} res[i]_0^{res[i]_1}
+}
+
+pred primosEnRes(res: seq<ZxZ>) {
+    (para todo i: Z)(0<=i<|res| -> esPrimo(res[i]_0))
+}
+
+pred oredenadosPorP(res: seq<ZxZ>) {
+    (para todo i: Z)(0<=i<|res|-1 -> res[i]_0 < res[i+1]_0)
+}
