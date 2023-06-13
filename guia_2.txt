@@ -58,3 +58,20 @@ problema #apariciones(n: Z, l: seq<Z>): Z{
 }
 
 (g)
+problema ordenadaCrecientemente(s: seq<Z>): Bool{
+    requiere: {s no tiene repetidos}
+    asegura: {para todo i entero entre 0 y |s|-1 s[i] <= s[i+1]}
+}
+
+(h)
+problema elMasRepetido(s: seq<Z>): Z{
+    requiere: {True}
+    asegura: {existe i para el cual #apariciones(s[i], s) es el maximo}
+}
+
+(i)
+problema borrar(s: seq<Z>, elem: Z): seq<Z>{
+    requiere: {s sin repetidos}
+    asegura: {|result| = |s|-1 y para el i tal que s[i] = elem para j<i result[j] = s[j] y para j>=i result[j] = s[i+1]}
+}
+
