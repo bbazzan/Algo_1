@@ -35,6 +35,14 @@ def avanzarFila(fila: Queue, min: int):
     if t % 4 == 0:
       fila.put(numero_disponible)
       numero_disponible += 1
+      
+    # retorno de clientes a fila
+      
+    if caja3['libre'] == False and t - caja3['tiempo_de_comienzo_de_atencion'] == 3:
+      fila.put(caja3['cliente'])
+      caja3['libre'] = True
+      caja3['cliente'] = None
+      caja3['tiempo_de_comienzo_de_atencion'] = 0
     
     # rececpción de clientes
     if t >= caja1['tiempo_de_apertura'] and t % 10 == 1 and not fila.empty():
@@ -51,23 +59,6 @@ def avanzarFila(fila: Queue, min: int):
       caja3['cliente'] = fila.get()
       caja3['libre'] = False
       caja3['tiempo_de_comienzo_de_atencion'] = t
-    
-    # retorno de clientes a fila
-      
-    if caja3['libre'] == False and t - caja3['tiempo_de_comienzo_de_atencion'] == 3:
-      if t % 10 == 1 :
-        caja1['libre'] = False
-        caja1['cliente'] = caja3['cliente']
-        caja1['tiempo_de_comienzo_de_atencion'] = t
-      elif t % 4 == 3:
-        caja2['libre'] = False
-        caja2['cliente'] = caja3['cliente']
-        caja2['tiempo_de_comienzo_de_atencion'] = t
-      else:
-        fila.put(caja3['cliente'])
-      caja3['libre'] = True
-      caja3['cliente'] = None
-      caja3['tiempo_de_comienzo_de_atencion'] = 0
     
     t += 1
   
